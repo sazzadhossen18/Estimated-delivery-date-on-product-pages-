@@ -1,0 +1,96 @@
+
+https://www.youtube.com/watch?v=Y7azPlZ7eKc&t=341s
+
+<p>
+<img src="https://cdn-icons-png.flaticon.com/512/1670/1670915.png" style="height:25px;float:left;margin-right:10px;padding-bottom: 4px;"/>
+Get it between <strong><span id="fromDate"></span> - <span id="toDate"></span></strong>
+</p>
+{{ '//cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js' | script_tag }}
+<script>
+var fromDate = Date.today().addDays(5);
+if (fromDate.is().saturday() || fromDate.is().sunday()) {
+fromDate = fromDate.next().monday();
+}
+var toDate = Date.today().addDays(10);
+if (toDate.is().saturday() || toDate.is().sunday()) {
+toDate = toDate.next().monday();
+}
+document.getElementById('fromDate').innerHTML = fromDate.toString('dddd MMMM dS');
+document.getElementById('toDate').innerHTML = toDate.toString('dddd MMMM dS');
+</script>
+
+
+
+
+
+
+
+https://www.youtube.com/watch?v=spVGFSMnOZ0
+
+<style>
+.delivery-date, .delivery-date p, .delivery-date div { display:inline;}
+</style>
+
+{% if product.metafields.custom.number_of_days_for_delivery != blank %}
+                      <div class="delivery-date">
+                        <p><b>Estimated Delivery Date:</b></p>
+                          <div id="m-date">
+                          {% assign days_to_add = product.metafields.custom.number_of_days_for_delivery | date: "%s" | times: 86400 %}
+{% assign future_date = 'now' | date: "%s" | plus: days_to_add | date: "%d %b" %} {{ future_date }}
+                         </div>
+                      </div>
+                      {% endif %}
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+Cart Page:
+========
+
+https://www.youtube.com/watch?v=MoAejU9Uj2I
+
+
+{{ '//ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js' | script_tag }}
+
+ {{ '//code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css' | stylesheet_tag }}
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" defer="defer"></script>
+
+  <div style="width:300px; clear:both;">
+    <p>
+      <label for="date">Pick a delivery date:</label>
+      <input id="date" type="text" name="attributes[date]" value="{{ cart.attributes.date }}" />
+      <span style="display:block" class="instructions"> We do not deliver during the week-end.</span>
+    </p>
+  </div>
+
+  <script>
+    window.onload = function() {
+      if (window.jQuery) {
+        let $ = window.jQuery;
+
+        $(function() {
+          $("#date").datepicker({
+            minDate: +1,
+            maxDate: '+2M',
+            beforeShowDay: $.datepicker.noWeekends
+          });
+        });
+      }
+    }
+  </script>
+  
+  
+  {% render 'delivery-date' %}
+                      
+                      
+                      
+                      
+                      
+                      
+                      
